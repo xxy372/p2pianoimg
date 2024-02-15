@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shell Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>This is a Simple Shell Game</h1>
+
+    <p>Score: <span class="score-element">0</span></p> <!--span has no meaning, just divid the element from the other-->
+
+    <div class="container">
+        <div class="ball" data-pos="3"><img src="media/ball-02.png"></div>
+        <div class="shells">
+            <button class="cup1" onclick="stopAnimation(1)"><img src="media/cup-01.png"></button>
+            <button class="cup2" onclick="stopAnimation(2)"><img src="media/cup-01.png"></button>
+            <button class="cup3" onclick="stopAnimation(3)"><img src="media/cup-01.png"></button>
+        </div>
+    </div>
+
+    <button class="startButton" onclick="startGame()">Start</button>
+    <button class="resetButton" onclick="resetGame()">Reset</button>
+
+    <script>
+        var intervalId; // Variable to store the interval ID
+        var rounds = 100; // Set the desired number of rounds
+
+        let scoreElement = document.querySelector(".score-element");
+
+        let score = 0;
+
+        // Function to update the data-pos attribute of the ball element with a random number between 1 and 3
+        function updatePosition() {
+            var ball = document.querySelector('.ball');
+            var randomPos = Math.floor(Math.random() * 3) + 1; // Generates a random number between 1 and 3
+            ball.setAttribute('data-pos', randomPos); // Updates the data-pos attribute
+
+            rounds--;
+            if (rounds === 0) {
+                clearInterval(intervalId);
+                alert('Game Over!'); // You can replace this with your end game logic
+            } else {
+                // Pause the animation and wait for user input
+                clearInterval(intervalId);
+            }
+        }
+
+        // Function to stop the animation and check the cup
+        function stopAnimation(cupNumber) {
+            var ball = document.querySelector('.ball');
+            var correctPos = parseInt(ball.getAttribute('data-pos'));
+
+            if (cupNumber === correctPos) {
+                alert('Correct!'); // You can replace this with your logic for a correct guess
+                // Continue to the next round
+                score ++;
+                scoreElement.innerText = score;
+                startGame();
+            } else {
+                alert('Wrong!'); // You can replace this with your logic for an incorrect guess
+                score --;
+                scoreElement.innerText = score;
+                // Restart the game
+                startGame();
+            }
+        }
+
+        // Function to start the game
+        function startGame() {
+            rounds = 100; // Reset rounds for a new game
+            intervalId = setInterval(updatePosition, 100);
+        }
+        function resetGame() {
+            clearInterval(intervalId); // Clear the interval
+            score = 0; // Reset the score
+            scoreElement.innerText = score; // Update the score display
+            startGame(); // Start a new game
+        }
+    </script>
+</body>
+</html>

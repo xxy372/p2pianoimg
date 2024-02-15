@@ -1,0 +1,88 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    background-color: #130C0D;
+}
+h1 {
+    text-align: center;
+    margin-top: 20vh;
+    color: #C8C1B7;
+}
+
+button {
+    padding: 5px;
+    background: transparent;
+    border: 0;
+}
+.startButton, .resetButton{
+    border: none; /* No border */
+    outline: 1px solid black;
+    background-color: #C8C1B7;
+    border-radius: 10%;
+    text-align: center; /* Center the text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Display as inline-block to center horizontally */
+    font-size: 16px; /* Font size */
+    margin: 40px auto; /* Add margin for spacing */
+    cursor: pointer; /* Add cursor pointer on hover */
+    display: block;
+    flex-direction: row;
+}
+.Bcontainer {
+    width: 600px;
+    margin: 0 auto;
+    position: relative;
+    /*outline: 1px */
+}
+.ball {
+    width: 33.33333%;
+    aspect-ratio: 1/1;
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform 0.1s;
+
+}
+.ball img{
+    width: 200px;
+    position: relative;
+    top: 0;
+}
+
+[data-pos="1"] {
+    transform: translateX(0);
+}
+
+[data-pos="2"] {
+    transform: translateX(100%);
+}
+
+[data-pos="3"] {
+    transform: translateX(200%);
+}
+
+.container {
+    width: 600px;
+    margin: 0 auto;
+    position: relative;
+    /*outline: 1px */
+    aspect-ratio: 3/1;
+}
+
+.shells {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: relative; /* Make the container position:relative */
+}
+
+.shells img {
+    width: 200px;
+    position: relative;
+    top: 0;
+}
+ p, .score-element{
+    text-align: center;
+    color: #C8C1B7;
+ }
